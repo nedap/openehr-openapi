@@ -1,0 +1,3804 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenEHR API stub",
+        "description": "empty OpenAPI model file for RM 1.0.4",
+        "contact": {
+            "name": "Pieter Bos",
+            "email": "pieter.bos@nedap.com"
+        },
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/something": {
+            "get": {
+                "summary": "something",
+                "description": "something describes",
+                "operationId": "getDescription",
+                "responses": {
+                    "default": {
+                        "description": "default",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Composition"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "VersionStatus": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "SyncExtractSpec": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "includes_versions"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "includes_versions": {
+                                "type": "boolean"
+                            },
+                            "contribution_list": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/HierObjectId"
+                                }
+                            },
+                            "contributions_since": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "all_contributions": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AuditDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "system_id",
+                            "time_committed",
+                            "change_type",
+                            "committer"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "system_id": {
+                                "type": "string"
+                            },
+                            "time_committed": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "change_type": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "description": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "committer": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            }
+                        }
+                    }
+                ]
+            },
+            "TerminologyId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Ehr": {
+                "type": "object",
+                "required": [
+                    "system_id",
+                    "ehr_id",
+                    "time_created",
+                    "ehr_access",
+                    "ehr_status",
+                    "contributions"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "system_id": {
+                        "$ref": "#/components/schemas/HierObjectId"
+                    },
+                    "ehr_id": {
+                        "$ref": "#/components/schemas/HierObjectId"
+                    },
+                    "time_created": {
+                        "$ref": "#/components/schemas/DvDateTime"
+                    },
+                    "ehr_access": {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    "ehr_status": {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    "directory": {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    "compositions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ObjectRef"
+                        }
+                    },
+                    "contributions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ObjectRef"
+                        }
+                    }
+                }
+            },
+            "DvTime": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractManifest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "entities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ExtractEntityManifest"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "RevisionHistoryItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "version_id",
+                            "audits"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "version_id": {
+                                "$ref": "#/components/schemas/ObjectVersionId"
+                            },
+                            "audits": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/AuditDetails"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "ArchetypeHrid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "namespace",
+                            "rm_publisher",
+                            "rm_package",
+                            "rm_class",
+                            "concept_id",
+                            "release_version",
+                            "version_status",
+                            "build_count"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "rm_publisher": {
+                                "type": "string"
+                            },
+                            "rm_package": {
+                                "type": "string"
+                            },
+                            "rm_class": {
+                                "type": "string"
+                            },
+                            "concept_id": {
+                                "type": "string"
+                            },
+                            "release_version": {
+                                "type": "string"
+                            },
+                            "version_status": {
+                                "$ref": "#/components/schemas/VersionStatus"
+                            },
+                            "build_count": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartyIdentity": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "details"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvParsable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvEncapsulated"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value",
+                            "formalism"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            },
+                            "formalism": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractVersionSpec": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "include_all_versions",
+                            "include_revision_history",
+                            "include_data"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "include_all_versions": {
+                                "type": "boolean"
+                            },
+                            "commit_time_interval": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "include_revision_history": {
+                                "type": "boolean"
+                            },
+                            "include_data": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractParticipation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "performer",
+                            "function"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "performer": {
+                                "type": "string"
+                            },
+                            "function": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "mode": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "time": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvCount": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvAmount"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "magnitude"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "magnitude": {
+                                "type": "integer"
+                            },
+                            "normal_range": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "other_reference_ranges": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ReferenceRange"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvDateTime": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvDuration": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvAmount"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Cluster": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Item"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "items"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Item"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartyRelated": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/PartyIdentified"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "relationship"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "relationship": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            }
+                        }
+                    }
+                ]
+            },
+            "IsoOid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uid"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ExtractFolder": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ExtractItem"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ExtractItem"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Instruction": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CareEntry"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "narrative"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "narrative": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "expiry_time": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "wf_definition": {
+                                "$ref": "#/components/schemas/DvParsable"
+                            },
+                            "activities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Activity"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractChapter": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ExtractItem"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Person": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Actor"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "GenericId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "scheme"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "scheme": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourceDescription": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "original_author",
+                            "lifecycle_state",
+                            "parent_resource",
+                            "details"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "original_author": {
+                                "type": "object"
+                            },
+                            "other_contributors": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "lifecycle_state": {
+                                "type": "string"
+                            },
+                            "resource_package_uri": {
+                                "type": "string"
+                            },
+                            "other_details": {
+                                "type": "object"
+                            },
+                            "parent_resource": {
+                                "type": "object"
+                            },
+                            "details": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ResourceDescriptionItem"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "Evaluation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CareEntry"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvAmount": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvQuantified"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "accuracy": {
+                                "type": "number"
+                            },
+                            "accuracy_is_percent": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Capability": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "credentials"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "credentials": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "time_validity": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Item": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Uid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Contribution": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "audit",
+                            "versions"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "audit": {
+                                "$ref": "#/components/schemas/AuditDetails"
+                            },
+                            "versions": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ObjectRef"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Archetyped": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "archetype_id",
+                            "rm_version"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "archetype_id": {
+                                "$ref": "#/components/schemas/ArchetypeId"
+                            },
+                            "template_id": {
+                                "$ref": "#/components/schemas/TemplateId"
+                            },
+                            "rm_version": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "FeederAuditDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "system_id"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "system_id": {
+                                "type": "string"
+                            },
+                            "location": {
+                                "$ref": "#/components/schemas/PartyIdentified"
+                            },
+                            "provider": {
+                                "$ref": "#/components/schemas/PartyIdentified"
+                            },
+                            "subject": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            },
+                            "time": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "version_id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "OriginalVersion": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Version"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "lifecycle_state"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/ObjectVersionId"
+                            },
+                            "preceding_version_uid": {
+                                "$ref": "#/components/schemas/ObjectVersionId"
+                            },
+                            "other_input_version_uids": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ObjectVersionId"
+                                },
+                                "minItems": 1
+                            },
+                            "attestations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Attestation"
+                                },
+                                "minItems": 1
+                            },
+                            "lifecycle_state": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "data": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartyProxy": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "external_ref": {
+                                "$ref": "#/components/schemas/PartyRef"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PointEvent": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Event"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CodePhrase": {
+                "type": "object",
+                "required": [
+                    "terminology_id",
+                    "code_string"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "terminology_id": {
+                        "$ref": "#/components/schemas/TerminologyId"
+                    },
+                    "code_string": {
+                        "type": "string"
+                    }
+                }
+            },
+            "InstructionDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Pathable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "instruction_id",
+                            "activity_id"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "instruction_id": {
+                                "$ref": "#/components/schemas/LocatableRef"
+                            },
+                            "wf_details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "activity_id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "XVersionedParty": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/XVersionedObject"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ExtractRequest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "extract_spec"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "extract_spec": {
+                                "$ref": "#/components/schemas/ExtractSpec"
+                            },
+                            "update_spec": {
+                                "$ref": "#/components/schemas/ExtractUpdateSpec"
+                            }
+                        }
+                    }
+                ]
+            },
+            "FeederAudit": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "originating_system_audit"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "originating_system_item_ids": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvIdentifier"
+                                }
+                            },
+                            "feeder_system_item_ids": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvIdentifier"
+                                }
+                            },
+                            "original_content": {
+                                "$ref": "#/components/schemas/DvEncapsulated"
+                            },
+                            "originating_system_audit": {
+                                "$ref": "#/components/schemas/FeederAuditDetails"
+                            },
+                            "feeder_system_audit": {
+                                "$ref": "#/components/schemas/FeederAuditDetails"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvAbsoluteQuantity": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvQuantified"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "accuracy": {
+                                "$ref": "#/components/schemas/DvAmount"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvTimeSpecification": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "$ref": "#/components/schemas/DvParsable"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Party": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "identities"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/UIDBasedId"
+                            },
+                            "details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "identities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/PartyIdentity"
+                                },
+                                "minItems": 1
+                            },
+                            "contacts": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Contact"
+                                },
+                                "minItems": 1
+                            },
+                            "relationships": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/PartyRelationship"
+                                },
+                                "minItems": 1
+                            },
+                            "reverse_relationships": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/LocatableRef"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "EventContext": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Pathable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "start_time",
+                            "setting"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "health_care_facility": {
+                                "$ref": "#/components/schemas/PartyIdentified"
+                            },
+                            "start_time": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "end_time": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "participations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Participation"
+                                },
+                                "minItems": 1
+                            },
+                            "location": {
+                                "type": "string"
+                            },
+                            "setting": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "other_context": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ItemSingle": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ItemStructure"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "item"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "item": {
+                                "$ref": "#/components/schemas/Element"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvProportion": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvAmount"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "numerator",
+                            "denominator",
+                            "type"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "numerator": {
+                                "type": "number"
+                            },
+                            "denominator": {
+                                "type": "number"
+                            },
+                            "type": {
+                                "type": "integer"
+                            },
+                            "precision": {
+                                "type": "integer"
+                            },
+                            "normal_range": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "other_reference_ranges": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ReferenceRange"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvOrdered": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "normal_status": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "normal_range": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "other_reference_ranges": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ReferenceRange"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvQuantity": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvAmount"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "magnitude",
+                            "units"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "magnitude": {
+                                "type": "number"
+                            },
+                            "property": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "units": {
+                                "type": "string"
+                            },
+                            "precision": {
+                                "type": "integer"
+                            },
+                            "normal_range": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "other_reference_ranges": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ReferenceRange"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ContentItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "XVersionedComposition": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/XVersionedObject"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "XVersionedFolder": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/XVersionedObject"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "DataValue": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "DvOrdinal": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvOrdered"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value",
+                            "symbol"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "integer"
+                            },
+                            "symbol": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Uri": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "SyncExtract": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/MessageContent"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "specification"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "specification": {
+                                "$ref": "#/components/schemas/SyncExtractSpec"
+                            },
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/XContribution"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "TerminologyCode": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "terminology_id",
+                            "code_string",
+                            "uri"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "terminology_id": {
+                                "type": "string"
+                            },
+                            "terminology_version": {
+                                "type": "string"
+                            },
+                            "code_string": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "$ref": "#/components/schemas/Uri"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Role": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Party"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "performer"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "performer": {
+                                "$ref": "#/components/schemas/PartyRef"
+                            },
+                            "capabilities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Capability"
+                                },
+                                "minItems": 1
+                            },
+                            "time_validity": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Agent": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Actor"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "InternetId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uid"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Message": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "author",
+                            "audit",
+                            "content"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "author": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            },
+                            "audit": {
+                                "$ref": "#/components/schemas/AuditDetails"
+                            },
+                            "content": {
+                                "$ref": "#/components/schemas/MessageContent"
+                            },
+                            "signature": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Group": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Actor"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ObjectId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractEntityManifest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "extract_id_key"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "extract_id_key": {
+                                "type": "string"
+                            },
+                            "ehr_id": {
+                                "type": "string"
+                            },
+                            "subject_id": {
+                                "type": "string"
+                            },
+                            "other_ids": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "item_list": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ObjectRef"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "UIDBasedId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Interval": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "lower_unbounded",
+                            "upper_unbounded",
+                            "lower_included",
+                            "upper_included"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "lower": {
+                                "type": "object"
+                            },
+                            "upper": {
+                                "type": "object"
+                            },
+                            "lower_unbounded": {
+                                "type": "boolean"
+                            },
+                            "upper_unbounded": {
+                                "type": "boolean"
+                            },
+                            "lower_included": {
+                                "type": "boolean"
+                            },
+                            "upper_included": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AuthoredResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "original_language"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "original_language": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            },
+                            "is_controlled": {
+                                "type": "boolean"
+                            },
+                            "translations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TranslationDetails"
+                                },
+                                "minItems": 1
+                            },
+                            "description": {
+                                "$ref": "#/components/schemas/ResourceDescription"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractActionRequest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "request_id",
+                            "uid",
+                            "action"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "request_id": {
+                                "$ref": "#/components/schemas/ObjectRef"
+                            },
+                            "uid": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "action": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartySelf": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/PartyProxy"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "DvMultimedia": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvEncapsulated"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "media_type",
+                            "size"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "alternate_text": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "$ref": "#/components/schemas/DvUri"
+                            },
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "media_type": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "compression_algorithm": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "integrity_check": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "integrity_check_algorithm": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "thumbnail": {
+                                "$ref": "#/components/schemas/DvMultimedia"
+                            },
+                            "size": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Actor": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Party"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "roles": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/PartyRef"
+                                },
+                                "minItems": 1
+                            },
+                            "languages": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvText"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "XContribution": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "audit"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "audit": {
+                                "$ref": "#/components/schemas/AuditDetails"
+                            },
+                            "versions": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Version"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "XVersionedEhrAccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/XVersionedObject"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "VersionTreeId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvParagraph": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "items"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvText"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "ReferenceRange": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "range",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "range": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "meaning": {
+                                "$ref": "#/components/schemas/DvText"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CareEntry": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Entry"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "protocol": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "guideline_id": {
+                                "$ref": "#/components/schemas/ObjectRef"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ItemTree": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ItemStructure"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Item"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Element": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Item"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "null_flavour": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "value": {
+                                "$ref": "#/components/schemas/DataValue"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractSpec": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "extract_type",
+                            "include_multimedia",
+                            "priority",
+                            "link_depth",
+                            "manifest"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "extract_type": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "include_multimedia": {
+                                "type": "boolean"
+                            },
+                            "priority": {
+                                "type": "integer"
+                            },
+                            "link_depth": {
+                                "type": "integer"
+                            },
+                            "criteria": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvParsable"
+                                }
+                            },
+                            "manifest": {
+                                "$ref": "#/components/schemas/ExtractManifest"
+                            },
+                            "version_spec": {
+                                "$ref": "#/components/schemas/ExtractVersionSpec"
+                            },
+                            "other_details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvGeneralTimeSpecification": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvTimeSpecification"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Version": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "contribution",
+                            "commit_audit"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "contribution": {
+                                "$ref": "#/components/schemas/ObjectRef"
+                            },
+                            "commit_audit": {
+                                "$ref": "#/components/schemas/AuditDetails"
+                            },
+                            "signature": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvDate": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvState": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value",
+                            "is_terminal"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "is_terminal": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccessControlSettings": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ItemList": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ItemStructure"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Element"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "DataStructure": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Duration": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "History": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataStructure"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "origin"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "origin": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "period": {
+                                "$ref": "#/components/schemas/DvDuration"
+                            },
+                            "duration": {
+                                "$ref": "#/components/schemas/DvDuration"
+                            },
+                            "summary": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "events": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Event"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvPeriodicTimeSpecification": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvTimeSpecification"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "SyncExtractRequest": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/MessageContent"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "specification"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "specification": {
+                                "$ref": "#/components/schemas/SyncExtractSpec"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Contact": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "time_validity": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "addresses": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Address"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourceDescriptionItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "language",
+                            "purpose",
+                            "other_details"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "language": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            },
+                            "purpose": {
+                                "type": "string"
+                            },
+                            "keywords": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "use": {
+                                "type": "string"
+                            },
+                            "misuse": {
+                                "type": "string"
+                            },
+                            "copyright": {
+                                "type": "string"
+                            },
+                            "original_resource_uri": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            },
+                            "other_details": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ]
+            },
+            "TermMapping": {
+                "type": "object",
+                "required": [
+                    "match",
+                    "target"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "match": {
+                        "type": "string"
+                    },
+                    "purpose": {
+                        "$ref": "#/components/schemas/DvCodedText"
+                    },
+                    "target": {
+                        "$ref": "#/components/schemas/CodePhrase"
+                    }
+                }
+            },
+            "Event": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "time",
+                            "data"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "time": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "state": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "data": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractUpdateSpec": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "persist_in_server",
+                            "update_method"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "persist_in_server": {
+                                "type": "boolean"
+                            },
+                            "trigger_events": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvCodedText"
+                                },
+                                "minItems": 1
+                            },
+                            "repeat_period": {
+                                "$ref": "#/components/schemas/DvDuration"
+                            },
+                            "update_method": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractContentItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ExtractItem"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "is_primary"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "is_primary": {
+                                "type": "boolean"
+                            },
+                            "is_changed": {
+                                "type": "boolean"
+                            },
+                            "is_masked": {
+                                "type": "boolean"
+                            },
+                            "item": {
+                                "$ref": "#/components/schemas/Any"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Observation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CareEntry"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/History"
+                            },
+                            "state": {
+                                "$ref": "#/components/schemas/History"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "XVersionedObject": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "owner_id",
+                            "time_created",
+                            "total_version_count",
+                            "extract_version_count"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "owner_id": {
+                                "$ref": "#/components/schemas/ObjectRef"
+                            },
+                            "time_created": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "total_version_count": {
+                                "type": "integer"
+                            },
+                            "extract_version_count": {
+                                "type": "integer"
+                            },
+                            "revision_history": {
+                                "$ref": "#/components/schemas/RevisionHistory"
+                            },
+                            "versions": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/OriginalVersion"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Locatable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Pathable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "archetype_node_id",
+                            "name"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/UIDBasedId"
+                            },
+                            "archetype_node_id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "archetype_details": {
+                                "$ref": "#/components/schemas/Archetyped"
+                            },
+                            "feeder_audit": {
+                                "$ref": "#/components/schemas/FeederAudit"
+                            },
+                            "links": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Link"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "AddressedMessage": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "sender",
+                            "sender_reference"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "sender": {
+                                "type": "string"
+                            },
+                            "sender_reference": {
+                                "type": "string"
+                            },
+                            "addressees": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "urgency": {
+                                "type": "integer"
+                            },
+                            "message": {
+                                "$ref": "#/components/schemas/Message"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvTemporal": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvAbsoluteQuantity"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "accuracy": {
+                                "$ref": "#/components/schemas/DvDuration"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Uuid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uid"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "IsmTransition": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Pathable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "current_state"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "current_state": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "transition": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "careflow_step": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "reason": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvText"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "XVersionedEhrStatus": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/XVersionedObject"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Participation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "function",
+                            "performer"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "function": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "time": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            },
+                            "mode": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "performer": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Folder": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "folders": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Folder"
+                                },
+                                "minItems": 1
+                            },
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ObjectRef"
+                                }
+                            },
+                            "details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Extract": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "time_created",
+                            "system_id",
+                            "sequence_nr"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "request_id": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "time_created": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "system_id": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "sequence_nr": {
+                                "type": "integer"
+                            },
+                            "specification": {
+                                "$ref": "#/components/schemas/ExtractSpec"
+                            },
+                            "chapters": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ExtractChapter"
+                                }
+                            },
+                            "participations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ExtractParticipation"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ValidityKind": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "Entry": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ContentItem"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "language",
+                            "encoding",
+                            "subject"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "language": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "encoding": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "subject": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            },
+                            "provider": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            },
+                            "other_participations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Participation"
+                                }
+                            },
+                            "workflow_id": {
+                                "$ref": "#/components/schemas/ObjectRef"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ObjectVersionId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UIDBasedId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "DvInterval": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Interval"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Organisation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Actor"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "VersionedObject": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "owner_id",
+                            "time_created"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "uid": {
+                                "$ref": "#/components/schemas/HierObjectId"
+                            },
+                            "owner_id": {
+                                "$ref": "#/components/schemas/ObjectRef"
+                            },
+                            "time_created": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvEncapsulated": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "charset": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "language": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            }
+                        }
+                    }
+                ]
+            },
+            "GenericContentItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ExtractContentItem"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "item_type": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "item_type_version": {
+                                "type": "string"
+                            },
+                            "author": {
+                                "type": "string"
+                            },
+                            "creation_time": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "authoriser": {
+                                "type": "string"
+                            },
+                            "authorisation_time": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "item_status": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "version_id": {
+                                "type": "string"
+                            },
+                            "version_set_id": {
+                                "type": "string"
+                            },
+                            "system_id": {
+                                "type": "string"
+                            },
+                            "other_details": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "item": {
+                                "$ref": "#/components/schemas/Locatable"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ItemTable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ItemStructure"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Cluster"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "IntervalEvent": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Event"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "width",
+                            "math_function"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "width": {
+                                "$ref": "#/components/schemas/DvDuration"
+                            },
+                            "sample_count": {
+                                "type": "integer"
+                            },
+                            "math_function": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Attestation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuditDetails"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "reason",
+                            "is_pending"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "attested_view": {
+                                "$ref": "#/components/schemas/DvMultimedia"
+                            },
+                            "proof": {
+                                "type": "string"
+                            },
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvEHRURI"
+                                }
+                            },
+                            "reason": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "is_pending": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Address": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "details"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "RevisionHistory": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "items"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/RevisionHistoryItem"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvIdentifier": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "issuer": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            },
+                            "assigner": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvCodedText": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvText"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "defining_code"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "defining_code": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartyRelationship": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "source",
+                            "target"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "source": {
+                                "$ref": "#/components/schemas/PartyRef"
+                            },
+                            "target": {
+                                "$ref": "#/components/schemas/PartyRef"
+                            },
+                            "details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "time_validity": {
+                                "$ref": "#/components/schemas/DvInterval"
+                            }
+                        }
+                    }
+                ]
+            },
+            "LocatableRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/UIDBasedId"
+                            },
+                            "path": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Pathable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "EhrAccess": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "settings": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvEHRURI": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvUri"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "TerminologyTerm": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "text",
+                            "concept"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "text": {
+                                "type": "string"
+                            },
+                            "concept": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ArchetypeId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Any": {
+                "type": "object",
+                "discriminator": {
+                    "propertyName": "_type",
+                    "mapping": {
+                        "VERSION_STATUS": "#/components/schemas/VersionStatus",
+                        "SYNC_EXTRACT_SPEC": "#/components/schemas/SyncExtractSpec",
+                        "AUDIT_DETAILS": "#/components/schemas/AuditDetails",
+                        "TERMINOLOGY_ID": "#/components/schemas/TerminologyId",
+                        "DV_TIME": "#/components/schemas/DvTime",
+                        "EXTRACT_MANIFEST": "#/components/schemas/ExtractManifest",
+                        "REVISION_HISTORY_ITEM": "#/components/schemas/RevisionHistoryItem",
+                        "ARCHETYPE_HRID": "#/components/schemas/ArchetypeHrid",
+                        "PARTY_IDENTITY": "#/components/schemas/PartyIdentity",
+                        "DV_PARSABLE": "#/components/schemas/DvParsable",
+                        "EXTRACT_VERSION_SPEC": "#/components/schemas/ExtractVersionSpec",
+                        "EXTRACT_PARTICIPATION": "#/components/schemas/ExtractParticipation",
+                        "DV_COUNT": "#/components/schemas/DvCount",
+                        "DV_DATE_TIME": "#/components/schemas/DvDateTime",
+                        "DV_DURATION": "#/components/schemas/DvDuration",
+                        "CLUSTER": "#/components/schemas/Cluster",
+                        "PARTY_RELATED": "#/components/schemas/PartyRelated",
+                        "ISO_OID": "#/components/schemas/IsoOid",
+                        "EXTRACT_FOLDER": "#/components/schemas/ExtractFolder",
+                        "INSTRUCTION": "#/components/schemas/Instruction",
+                        "EXTRACT_CHAPTER": "#/components/schemas/ExtractChapter",
+                        "PERSON": "#/components/schemas/Person",
+                        "GENERIC_ID": "#/components/schemas/GenericId",
+                        "RESOURCE_DESCRIPTION": "#/components/schemas/ResourceDescription",
+                        "EVALUATION": "#/components/schemas/Evaluation",
+                        "DV_AMOUNT": "#/components/schemas/DvAmount",
+                        "CAPABILITY": "#/components/schemas/Capability",
+                        "ITEM": "#/components/schemas/Item",
+                        "UID": "#/components/schemas/Uid",
+                        "CONTRIBUTION": "#/components/schemas/Contribution",
+                        "ARCHETYPED": "#/components/schemas/Archetyped",
+                        "FEEDER_AUDIT_DETAILS": "#/components/schemas/FeederAuditDetails",
+                        "ORIGINAL_VERSION": "#/components/schemas/OriginalVersion",
+                        "PARTY_PROXY": "#/components/schemas/PartyProxy",
+                        "POINT_EVENT": "#/components/schemas/PointEvent",
+                        "INSTRUCTION_DETAILS": "#/components/schemas/InstructionDetails",
+                        "X_VERSIONED_PARTY": "#/components/schemas/XVersionedParty",
+                        "EXTRACT_REQUEST": "#/components/schemas/ExtractRequest",
+                        "FEEDER_AUDIT": "#/components/schemas/FeederAudit",
+                        "DV_ABSOLUTE_QUANTITY": "#/components/schemas/DvAbsoluteQuantity",
+                        "DV_TIME_SPECIFICATION": "#/components/schemas/DvTimeSpecification",
+                        "PARTY": "#/components/schemas/Party",
+                        "EVENT_CONTEXT": "#/components/schemas/EventContext",
+                        "ITEM_SINGLE": "#/components/schemas/ItemSingle",
+                        "DV_PROPORTION": "#/components/schemas/DvProportion",
+                        "DV_ORDERED": "#/components/schemas/DvOrdered",
+                        "DV_QUANTITY": "#/components/schemas/DvQuantity",
+                        "CONTENT_ITEM": "#/components/schemas/ContentItem",
+                        "X_VERSIONED_COMPOSITION": "#/components/schemas/XVersionedComposition",
+                        "X_VERSIONED_FOLDER": "#/components/schemas/XVersionedFolder",
+                        "DATA_VALUE": "#/components/schemas/DataValue",
+                        "DV_ORDINAL": "#/components/schemas/DvOrdinal",
+                        "URI": "#/components/schemas/Uri",
+                        "SYNC_EXTRACT": "#/components/schemas/SyncExtract",
+                        "TERMINOLOGY_CODE": "#/components/schemas/TerminologyCode",
+                        "ROLE": "#/components/schemas/Role",
+                        "AGENT": "#/components/schemas/Agent",
+                        "INTERNET_ID": "#/components/schemas/InternetId",
+                        "MESSAGE": "#/components/schemas/Message",
+                        "GROUP": "#/components/schemas/Group",
+                        "OBJECT_ID": "#/components/schemas/ObjectId",
+                        "EXTRACT_ENTITY_MANIFEST": "#/components/schemas/ExtractEntityManifest",
+                        "UID_BASED_ID": "#/components/schemas/UIDBasedId",
+                        "INTERVAL": "#/components/schemas/Interval",
+                        "AUTHORED_RESOURCE": "#/components/schemas/AuthoredResource",
+                        "EXTRACT_ACTION_REQUEST": "#/components/schemas/ExtractActionRequest",
+                        "PARTY_SELF": "#/components/schemas/PartySelf",
+                        "DV_MULTIMEDIA": "#/components/schemas/DvMultimedia",
+                        "ACTOR": "#/components/schemas/Actor",
+                        "X_CONTRIBUTION": "#/components/schemas/XContribution",
+                        "X_VERSIONED_EHR_ACCESS": "#/components/schemas/XVersionedEhrAccess",
+                        "VERSION_TREE_ID": "#/components/schemas/VersionTreeId",
+                        "DV_PARAGRAPH": "#/components/schemas/DvParagraph",
+                        "REFERENCE_RANGE": "#/components/schemas/ReferenceRange",
+                        "CARE_ENTRY": "#/components/schemas/CareEntry",
+                        "ITEM_TREE": "#/components/schemas/ItemTree",
+                        "ELEMENT": "#/components/schemas/Element",
+                        "EXTRACT_SPEC": "#/components/schemas/ExtractSpec",
+                        "DV_GENERAL_TIME_SPECIFICATION": "#/components/schemas/DvGeneralTimeSpecification",
+                        "VERSION": "#/components/schemas/Version",
+                        "DV_DATE": "#/components/schemas/DvDate",
+                        "DV_STATE": "#/components/schemas/DvState",
+                        "ACCESS_CONTROL_SETTINGS": "#/components/schemas/AccessControlSettings",
+                        "ITEM_LIST": "#/components/schemas/ItemList",
+                        "DATA_STRUCTURE": "#/components/schemas/DataStructure",
+                        "DURATION": "#/components/schemas/Duration",
+                        "HISTORY": "#/components/schemas/History",
+                        "DV_PERIODIC_TIME_SPECIFICATION": "#/components/schemas/DvPeriodicTimeSpecification",
+                        "SYNC_EXTRACT_REQUEST": "#/components/schemas/SyncExtractRequest",
+                        "CONTACT": "#/components/schemas/Contact",
+                        "RESOURCE_DESCRIPTION_ITEM": "#/components/schemas/ResourceDescriptionItem",
+                        "EVENT": "#/components/schemas/Event",
+                        "EXTRACT_UPDATE_SPEC": "#/components/schemas/ExtractUpdateSpec",
+                        "EXTRACT_CONTENT_ITEM": "#/components/schemas/ExtractContentItem",
+                        "OBSERVATION": "#/components/schemas/Observation",
+                        "EXTRACT_ITEM": "#/components/schemas/ExtractItem",
+                        "X_VERSIONED_OBJECT": "#/components/schemas/XVersionedObject",
+                        "LOCATABLE": "#/components/schemas/Locatable",
+                        "ADDRESSED_MESSAGE": "#/components/schemas/AddressedMessage",
+                        "DV_TEMPORAL": "#/components/schemas/DvTemporal",
+                        "UUID": "#/components/schemas/Uuid",
+                        "ISM_TRANSITION": "#/components/schemas/IsmTransition",
+                        "X_VERSIONED_EHR_STATUS": "#/components/schemas/XVersionedEhrStatus",
+                        "PARTICIPATION": "#/components/schemas/Participation",
+                        "FOLDER": "#/components/schemas/Folder",
+                        "EXTRACT": "#/components/schemas/Extract",
+                        "VALIDITY_KIND": "#/components/schemas/ValidityKind",
+                        "ENTRY": "#/components/schemas/Entry",
+                        "OBJECT_VERSION_ID": "#/components/schemas/ObjectVersionId",
+                        "DV_INTERVAL": "#/components/schemas/DvInterval",
+                        "ORGANISATION": "#/components/schemas/Organisation",
+                        "VERSIONED_OBJECT": "#/components/schemas/VersionedObject",
+                        "DV_ENCAPSULATED": "#/components/schemas/DvEncapsulated",
+                        "GENERIC_CONTENT_ITEM": "#/components/schemas/GenericContentItem",
+                        "ITEM_TABLE": "#/components/schemas/ItemTable",
+                        "INTERVAL_EVENT": "#/components/schemas/IntervalEvent",
+                        "ATTESTATION": "#/components/schemas/Attestation",
+                        "ADDRESS": "#/components/schemas/Address",
+                        "REVISION_HISTORY": "#/components/schemas/RevisionHistory",
+                        "DV_IDENTIFIER": "#/components/schemas/DvIdentifier",
+                        "DV_CODED_TEXT": "#/components/schemas/DvCodedText",
+                        "PARTY_RELATIONSHIP": "#/components/schemas/PartyRelationship",
+                        "LOCATABLE_REF": "#/components/schemas/LocatableRef",
+                        "PATHABLE": "#/components/schemas/Pathable",
+                        "EHR_ACCESS": "#/components/schemas/EhrAccess",
+                        "DV_EHR_URI": "#/components/schemas/DvEHRURI",
+                        "TERMINOLOGY_TERM": "#/components/schemas/TerminologyTerm",
+                        "ARCHETYPE_ID": "#/components/schemas/ArchetypeId",
+                        "PARTY_REF": "#/components/schemas/PartyRef",
+                        "TEMPLATE_ID": "#/components/schemas/TemplateId",
+                        "MESSAGE_CONTENT": "#/components/schemas/MessageContent",
+                        "ADMIN_ENTRY": "#/components/schemas/AdminEntry",
+                        "PARTY_IDENTIFIED": "#/components/schemas/PartyIdentified",
+                        "OPENEHR_CONTENT_ITEM": "#/components/schemas/OpenehrContentItem",
+                        "COMPOSITION": "#/components/schemas/Composition",
+                        "EHR_STATUS": "#/components/schemas/EhrStatus",
+                        "LINK": "#/components/schemas/Link",
+                        "TRANSLATION_DETAILS": "#/components/schemas/TranslationDetails",
+                        "ACCESS_GROUP_REF": "#/components/schemas/AccessGroupRef",
+                        "OBJECT_REF": "#/components/schemas/ObjectRef",
+                        "GENERIC_ENTRY": "#/components/schemas/GenericEntry",
+                        "DV_QUANTIFIED": "#/components/schemas/DvQuantified",
+                        "IMPORTED_VERSION": "#/components/schemas/ImportedVersion",
+                        "DV_BOOLEAN": "#/components/schemas/DvBoolean",
+                        "DV_URI": "#/components/schemas/DvUri",
+                        "DV_TEXT": "#/components/schemas/DvText",
+                        "ACTION": "#/components/schemas/Action",
+                        "EXTRACT_ENTITY_CHAPTER": "#/components/schemas/ExtractEntityChapter",
+                        "ITEM_STRUCTURE": "#/components/schemas/ItemStructure",
+                        "HIER_OBJECT_ID": "#/components/schemas/HierObjectId",
+                        "SECTION": "#/components/schemas/Section",
+                        "ACTIVITY": "#/components/schemas/Activity"
+                    }
+                },
+                "properties": {
+                    "_type": {
+                        "type": "string"
+                    }
+                }
+            },
+            "PartyRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "TemplateId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "MessageContent": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "AdminEntry": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Entry"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartyIdentified": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/PartyProxy"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "identifiers": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DvIdentifier"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "OpenehrContentItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ExtractContentItem"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "item": {
+                                "$ref": "#/components/schemas/XVersionedObject"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Composition": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "language",
+                            "territory",
+                            "category",
+                            "composer"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "language": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "territory": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "category": {
+                                "$ref": "#/components/schemas/DvCodedText"
+                            },
+                            "composer": {
+                                "$ref": "#/components/schemas/PartyProxy"
+                            },
+                            "context": {
+                                "$ref": "#/components/schemas/EventContext"
+                            },
+                            "content": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ContentItem"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "EhrStatus": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "subject",
+                            "is_queryable",
+                            "is_modifiable"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "subject": {
+                                "$ref": "#/components/schemas/PartySelf"
+                            },
+                            "is_queryable": {
+                                "type": "boolean"
+                            },
+                            "is_modifiable": {
+                                "type": "boolean"
+                            },
+                            "other_details": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Link": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "meaning",
+                            "type",
+                            "target"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "meaning": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "type": {
+                                "$ref": "#/components/schemas/DvText"
+                            },
+                            "target": {
+                                "$ref": "#/components/schemas/DvEHRURI"
+                            }
+                        }
+                    }
+                ]
+            },
+            "TranslationDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "language",
+                            "author"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "language": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            },
+                            "author": {
+                                "type": "object"
+                            },
+                            "accreditation": {
+                                "type": "string"
+                            },
+                            "other_details": {
+                                "type": "object"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccessGroupRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ObjectRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "namespace",
+                            "type"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/ObjectId"
+                            },
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "GenericEntry": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ContentItem"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "data"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "data": {
+                                "$ref": "#/components/schemas/ItemTree"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvQuantified": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DvOrdered"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "magnitude_status": {
+                                "type": "string"
+                            },
+                            "accuracy": {
+                                "$ref": "#/components/schemas/Any"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ImportedVersion": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Version"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "item"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "item": {
+                                "$ref": "#/components/schemas/OriginalVersion"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvBoolean": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvUri": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "DvText": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataValue"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            },
+                            "hyperlink": {
+                                "$ref": "#/components/schemas/DvUri"
+                            },
+                            "language": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "encoding": {
+                                "$ref": "#/components/schemas/CodePhrase"
+                            },
+                            "formatting": {
+                                "type": "string"
+                            },
+                            "mappings": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TermMapping"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "Action": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CareEntry"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "time",
+                            "description",
+                            "ism_transition"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "time": {
+                                "$ref": "#/components/schemas/DvDateTime"
+                            },
+                            "description": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "ism_transition": {
+                                "$ref": "#/components/schemas/IsmTransition"
+                            },
+                            "instruction_details": {
+                                "$ref": "#/components/schemas/InstructionDetails"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExtractEntityChapter": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ExtractChapter"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "extract_id_key"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "extract_id_key": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ItemStructure": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/DataStructure"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "HierObjectId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UIDBasedId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Section": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ContentItem"
+                    },
+                    {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ContentItem"
+                                },
+                                "minItems": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "Activity": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Locatable"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "description"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "description": {
+                                "$ref": "#/components/schemas/ItemStructure"
+                            },
+                            "timing": {
+                                "$ref": "#/components/schemas/DvParsable"
+                            },
+                            "action_archetype_id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
