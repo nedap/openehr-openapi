@@ -9,9 +9,8 @@ The Archie specific serialization variant of the archetype object model version 
 ## Build Instructions
 
 1. Clone this repository
-2. Install java
-3. Install gradle
-4. run:
+2. Install java, at least version 8
+3. run:
 
 ```
 ./gradlew clean build
