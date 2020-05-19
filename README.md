@@ -4,9 +4,10 @@ This small project demonstrates the possibilities of generating OpenEHR models a
 
 ## Build Instructions
 
-1. Install java
-2. Install gradle
-3. run
+1. Clone this repository
+2. Install java
+3. Install gradle
+4. run:
 
 ```
 ./gradlew clean build
