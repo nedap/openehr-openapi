@@ -1,0 +1,2051 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenEHR API stub",
+        "description": "empty OpenAPI model file for RM 1.0.4",
+        "contact": {
+            "name": "Pieter Bos",
+            "email": "pieter.bos@nedap.com"
+        },
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/something": {
+            "get": {
+                "summary": "something",
+                "description": "something describes",
+                "operationId": "getDescription",
+                "responses": {
+                    "default": {
+                        "description": "default",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Composition"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "COrdered": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CPrimitiveObject"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "VersionStatus": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "TerminologyId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CBoolean": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CPrimitiveObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "type": "boolean"
+                                }
+                            },
+                            "assumed_value": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ArchetypeHrid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "namespace",
+                            "rm_publisher",
+                            "rm_package",
+                            "rm_class",
+                            "concept_id",
+                            "release_version",
+                            "version_status",
+                            "build_count"
+                        ],
+                        "properties": {
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "rm_publisher": {
+                                "type": "string"
+                            },
+                            "rm_package": {
+                                "type": "string"
+                            },
+                            "rm_class": {
+                                "type": "string"
+                            },
+                            "concept_id": {
+                                "type": "string"
+                            },
+                            "release_version": {
+                                "type": "string"
+                            },
+                            "version_status": {
+                                "$ref": "#/components/schemas/VersionStatus"
+                            },
+                            "build_count": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CTerminologyCode": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CPrimitiveObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "assumed_value": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ExpressionType": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "CTemporal": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/COrdered"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "patterned_constraint"
+                        ],
+                        "properties": {
+                            "patterned_constraint": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "IsoOid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uid"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CPrimitiveObject": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CDefinedObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "enumerated_type_constraint",
+                            "node_id"
+                        ],
+                        "properties": {
+                            "enumerated_type_constraint": {
+                                "type": "boolean"
+                            },
+                            "node_id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourceAnnotations": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "documentation"
+                        ],
+                        "properties": {
+                            "documentation": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourceDescription": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "other_details",
+                            "licence",
+                            "copyright",
+                            "references",
+                            "conversion_details",
+                            "resource_package_uri",
+                            "lifecycle_state",
+                            "custodian_organisation",
+                            "other_contributors",
+                            "original_namespace",
+                            "custodian_namespace",
+                            "original_publisher",
+                            "details",
+                            "original_author",
+                            "ip_acknowledgements"
+                        ],
+                        "properties": {
+                            "other_details": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "licence": {
+                                "type": "string"
+                            },
+                            "copyright": {
+                                "type": "string"
+                            },
+                            "references": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "conversion_details": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "resource_package_uri": {
+                                "type": "string"
+                            },
+                            "lifecycle_state": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            },
+                            "custodian_organisation": {
+                                "type": "string"
+                            },
+                            "other_contributors": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "original_namespace": {
+                                "type": "string"
+                            },
+                            "custodian_namespace": {
+                                "type": "string"
+                            },
+                            "original_publisher": {
+                                "type": "string"
+                            },
+                            "details": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/ResourceDescriptionItem"
+                                }
+                            },
+                            "original_author": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "ip_acknowledgements": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "GenericId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "scheme"
+                        ],
+                        "properties": {
+                            "scheme": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "SiblingOrder": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "sibling_node_id",
+                            "before"
+                        ],
+                        "properties": {
+                            "sibling_node_id": {
+                                "type": "string"
+                            },
+                            "before": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Function": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Expression"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "RuleStatement": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RuleElement"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "rule_content"
+                        ],
+                        "properties": {
+                            "rule_content": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Uid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "BuiltinVariable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VariableDeclaration"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "VariableReference": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Leaf"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "declaration"
+                        ],
+                        "properties": {
+                            "declaration": {
+                                "$ref": "#/components/schemas/VariableDeclaration"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AuthoredArchetype": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Archetype"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ArchetypeTerm": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "code"
+                        ],
+                        "properties": {
+                            "code": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CArchetypeRoot": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CComplexObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "archetype_ref"
+                        ],
+                        "properties": {
+                            "archetype_ref": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "TemplateOverlay": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Archetype"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ArchetypeConstraint": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "TerminologyRelation": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ReferenceType": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "LanguageSection": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "original_language",
+                            "translations"
+                        ],
+                        "properties": {
+                            "original_language": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            },
+                            "translations": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/TranslationDetails"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "CObject": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ArchetypeConstraint"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "occurrences",
+                            "sibling_order",
+                            "rm_type_name",
+                            "deprecated",
+                            "node_id"
+                        ],
+                        "properties": {
+                            "occurrences": {
+                                "$ref": "#/components/schemas/MultiplicityInterval"
+                            },
+                            "sibling_order": {
+                                "$ref": "#/components/schemas/SiblingOrder"
+                            },
+                            "rm_type_name": {
+                                "type": "string"
+                            },
+                            "deprecated": {
+                                "type": "boolean"
+                            },
+                            "node_id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CString": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CPrimitiveObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "assumed_value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Constraint": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Leaf"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "item"
+                        ],
+                        "properties": {
+                            "item": {
+                                "$ref": "#/components/schemas/CPrimitiveObject"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ModelReference": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Leaf"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "variable_reference_prefix",
+                            "path"
+                        ],
+                        "properties": {
+                            "variable_reference_prefix": {
+                                "type": "string"
+                            },
+                            "path": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Uri": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "TerminologyCode": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "terminology_id",
+                            "code_string",
+                            "uri"
+                        ],
+                        "properties": {
+                            "terminology_id": {
+                                "type": "string"
+                            },
+                            "terminology_version": {
+                                "type": "string"
+                            },
+                            "code_string": {
+                                "type": "string"
+                            },
+                            "uri": {
+                                "$ref": "#/components/schemas/Uri"
+                            }
+                        }
+                    }
+                ]
+            },
+            "InternetId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uid"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ObjectId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CPrimitiveTuple": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CSecondOrder"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "UIDBasedId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Interval": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "lower_unbounded",
+                            "upper_unbounded",
+                            "lower_included",
+                            "upper_included"
+                        ],
+                        "properties": {
+                            "lower": {
+                                "type": "object"
+                            },
+                            "upper": {
+                                "type": "object"
+                            },
+                            "lower_unbounded": {
+                                "type": "boolean"
+                            },
+                            "upper_unbounded": {
+                                "type": "boolean"
+                            },
+                            "lower_included": {
+                                "type": "boolean"
+                            },
+                            "upper_included": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AuthoredResource": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "uid",
+                            "annotations"
+                        ],
+                        "properties": {
+                            "controlled": {
+                                "type": "boolean"
+                            },
+                            "uid": {
+                                "type": "string"
+                            },
+                            "annotations": {
+                                "$ref": "#/components/schemas/ResourceAnnotations"
+                            },
+                            "description": {
+                                "$ref": "#/components/schemas/ResourceDescription"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Constant": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Leaf"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "properties": {
+                            "value": {
+                                "$ref": "#/components/schemas/Any"
+                            }
+                        }
+                    }
+                ]
+            },
+            "VersionTreeId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "value"
+                        ],
+                        "properties": {
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Operator": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Expression"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "operator"
+                        ],
+                        "properties": {
+                            "operator": {
+                                "$ref": "#/components/schemas/OperatorKind"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CAttribute": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ArchetypeConstraint"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "rm_attribute_name",
+                            "children",
+                            "multiple",
+                            "existence",
+                            "differential_path",
+                            "cardinality"
+                        ],
+                        "properties": {
+                            "rm_attribute_name": {
+                                "type": "string"
+                            },
+                            "children": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CObject"
+                                }
+                            },
+                            "multiple": {
+                                "type": "boolean"
+                            },
+                            "existence": {
+                                "$ref": "#/components/schemas/MultiplicityInterval"
+                            },
+                            "differential_path": {
+                                "type": "string"
+                            },
+                            "cardinality": {
+                                "$ref": "#/components/schemas/Cardinality"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Expression": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RuleElement"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "precedence_overridden"
+                        ],
+                        "properties": {
+                            "precedence_overridden": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Leaf": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Expression"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "reference_type"
+                        ],
+                        "properties": {
+                            "reference_type": {
+                                "$ref": "#/components/schemas/ReferenceType"
+                            }
+                        }
+                    }
+                ]
+            },
+            "UnaryOperator": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Operator"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Duration": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "CSecondOrder": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "members"
+                        ],
+                        "properties": {
+                            "members": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ArchetypeConstraint"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "CAttributeTuple": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CSecondOrder"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "tuples"
+                        ],
+                        "properties": {
+                            "tuples": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CPrimitiveTuple"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "OperationalTemplate": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthoredArchetype"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "component_terminologies",
+                            "terminology_extracts"
+                        ],
+                        "properties": {
+                            "component_terminologies": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/ArchetypeTerminology"
+                                }
+                            },
+                            "terminology_extracts": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/ArchetypeTerminology"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourceDescriptionItem": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "other_details",
+                            "copyright",
+                            "keywords",
+                            "purpose",
+                            "use",
+                            "original_resource_uri",
+                            "language",
+                            "misuse"
+                        ],
+                        "properties": {
+                            "other_details": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "copyright": {
+                                "type": "string"
+                            },
+                            "keywords": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "purpose": {
+                                "type": "string"
+                            },
+                            "use": {
+                                "type": "string"
+                            },
+                            "original_resource_uri": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/Uri"
+                                }
+                            },
+                            "language": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            },
+                            "misuse": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CDate": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Interval"
+                                }
+                            },
+                            "assumed_value": {
+                                "$ref": "#/components/schemas/Temporal"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Assertion": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RuleStatement"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "variables",
+                            "string_expression",
+                            "expression",
+                            "tag"
+                        ],
+                        "properties": {
+                            "variables": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/VariableDeclaration"
+                                }
+                            },
+                            "string_expression": {
+                                "type": "string"
+                            },
+                            "expression": {
+                                "$ref": "#/components/schemas/Expression"
+                            },
+                            "tag": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CDefinedObject": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "default_value"
+                        ],
+                        "properties": {
+                            "default_value": {
+                                "$ref": "#/components/schemas/Any"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CComplexObjectProxy": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "target_path"
+                        ],
+                        "properties": {
+                            "target_path": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CDuration": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Interval"
+                                }
+                            },
+                            "assumed_value": {
+                                "$ref": "#/components/schemas/Duration"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Template": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthoredArchetype"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "template_overlays"
+                        ],
+                        "properties": {
+                            "template_overlays": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TemplateOverlay"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Uuid": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Uid"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ValidityKind": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "ObjectVersionId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UIDBasedId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ArchetypeSlot": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "excludes",
+                            "closed",
+                            "includes"
+                        ],
+                        "properties": {
+                            "excludes": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Assertion"
+                                }
+                            },
+                            "closed": {
+                                "type": "boolean"
+                            },
+                            "includes": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Assertion"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "MultiplicityInterval": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Interval"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CReal": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/COrdered"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Interval"
+                                }
+                            },
+                            "assumed_value": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                ]
+            },
+            "LocatableRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/UIDBasedId"
+                            },
+                            "path": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "RulesSection": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "rules",
+                            "content"
+                        ],
+                        "properties": {
+                            "rules": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/RuleStatement"
+                                }
+                            },
+                            "content": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ArchetypeTerminology": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "term_bindings",
+                            "original_language",
+                            "value_sets",
+                            "concept_code",
+                            "terminology_extracts",
+                            "term_definitions",
+                            "differential"
+                        ],
+                        "properties": {
+                            "term_bindings": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "$ref": "#/components/schemas/Uri"
+                                    }
+                                }
+                            },
+                            "original_language": {
+                                "type": "string"
+                            },
+                            "value_sets": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "$ref": "#/components/schemas/ValueSet"
+                                }
+                            },
+                            "concept_code": {
+                                "type": "string"
+                            },
+                            "terminology_extracts": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "$ref": "#/components/schemas/ArchetypeTerm"
+                                    }
+                                }
+                            },
+                            "term_definitions": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "$ref": "#/components/schemas/ArchetypeTerm"
+                                    }
+                                }
+                            },
+                            "differential": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                ]
+            },
+            "TerminologyTerm": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "text",
+                            "concept"
+                        ],
+                        "properties": {
+                            "text": {
+                                "type": "string"
+                            },
+                            "concept": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ArchetypeId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Any": {
+                "type": "object",
+                "discriminator": {
+                    "propertyName": "_type",
+                    "mapping": {
+                        "C_ORDERED": "#/components/schemas/COrdered",
+                        "VERSION_STATUS": "#/components/schemas/VersionStatus",
+                        "TERMINOLOGY_ID": "#/components/schemas/TerminologyId",
+                        "C_BOOLEAN": "#/components/schemas/CBoolean",
+                        "ARCHETYPE_HRID": "#/components/schemas/ArchetypeHrid",
+                        "C_TERMINOLOGY_CODE": "#/components/schemas/CTerminologyCode",
+                        "EXPRESSION_TYPE": "#/components/schemas/ExpressionType",
+                        "C_TEMPORAL": "#/components/schemas/CTemporal",
+                        "ISO_OID": "#/components/schemas/IsoOid",
+                        "C_PRIMITIVE_OBJECT": "#/components/schemas/CPrimitiveObject",
+                        "RESOURCE_ANNOTATIONS": "#/components/schemas/ResourceAnnotations",
+                        "RESOURCE_DESCRIPTION": "#/components/schemas/ResourceDescription",
+                        "GENERIC_ID": "#/components/schemas/GenericId",
+                        "SIBLING_ORDER": "#/components/schemas/SiblingOrder",
+                        "FUNCTION": "#/components/schemas/Function",
+                        "RULE_STATEMENT": "#/components/schemas/RuleStatement",
+                        "UID": "#/components/schemas/Uid",
+                        "BUILTIN_VARIABLE": "#/components/schemas/BuiltinVariable",
+                        "VARIABLE_REFERENCE": "#/components/schemas/VariableReference",
+                        "AUTHORED_ARCHETYPE": "#/components/schemas/AuthoredArchetype",
+                        "ARCHETYPE_TERM": "#/components/schemas/ArchetypeTerm",
+                        "C_ARCHETYPE_ROOT": "#/components/schemas/CArchetypeRoot",
+                        "TEMPLATE_OVERLAY": "#/components/schemas/TemplateOverlay",
+                        "ARCHETYPE_CONSTRAINT": "#/components/schemas/ArchetypeConstraint",
+                        "TERMINOLOGY_RELATION": "#/components/schemas/TerminologyRelation",
+                        "REFERENCE_TYPE": "#/components/schemas/ReferenceType",
+                        "LANGUAGE_SECTION": "#/components/schemas/LanguageSection",
+                        "C_OBJECT": "#/components/schemas/CObject",
+                        "C_STRING": "#/components/schemas/CString",
+                        "CONSTRAINT": "#/components/schemas/Constraint",
+                        "MODEL_REFERENCE": "#/components/schemas/ModelReference",
+                        "URI": "#/components/schemas/Uri",
+                        "TERMINOLOGY_CODE": "#/components/schemas/TerminologyCode",
+                        "INTERNET_ID": "#/components/schemas/InternetId",
+                        "OBJECT_ID": "#/components/schemas/ObjectId",
+                        "C_PRIMITIVE_TUPLE": "#/components/schemas/CPrimitiveTuple",
+                        "UID_BASED_ID": "#/components/schemas/UIDBasedId",
+                        "INTERVAL": "#/components/schemas/Interval",
+                        "AUTHORED_RESOURCE": "#/components/schemas/AuthoredResource",
+                        "CONSTANT": "#/components/schemas/Constant",
+                        "VERSION_TREE_ID": "#/components/schemas/VersionTreeId",
+                        "OPERATOR": "#/components/schemas/Operator",
+                        "C_ATTRIBUTE": "#/components/schemas/CAttribute",
+                        "EXPRESSION": "#/components/schemas/Expression",
+                        "LEAF": "#/components/schemas/Leaf",
+                        "UNARY_OPERATOR": "#/components/schemas/UnaryOperator",
+                        "DURATION": "#/components/schemas/Duration",
+                        "C_SECOND_ORDER": "#/components/schemas/CSecondOrder",
+                        "C_ATTRIBUTE_TUPLE": "#/components/schemas/CAttributeTuple",
+                        "OPERATIONAL_TEMPLATE": "#/components/schemas/OperationalTemplate",
+                        "RESOURCE_DESCRIPTION_ITEM": "#/components/schemas/ResourceDescriptionItem",
+                        "C_DATE": "#/components/schemas/CDate",
+                        "ASSERTION": "#/components/schemas/Assertion",
+                        "C_DEFINED_OBJECT": "#/components/schemas/CDefinedObject",
+                        "C_COMPLEX_OBJECT_PROXY": "#/components/schemas/CComplexObjectProxy",
+                        "C_DURATION": "#/components/schemas/CDuration",
+                        "TEMPLATE": "#/components/schemas/Template",
+                        "UUID": "#/components/schemas/Uuid",
+                        "VALIDITY_KIND": "#/components/schemas/ValidityKind",
+                        "OBJECT_VERSION_ID": "#/components/schemas/ObjectVersionId",
+                        "ARCHETYPE_SLOT": "#/components/schemas/ArchetypeSlot",
+                        "MULTIPLICITY_INTERVAL": "#/components/schemas/MultiplicityInterval",
+                        "C_REAL": "#/components/schemas/CReal",
+                        "LOCATABLE_REF": "#/components/schemas/LocatableRef",
+                        "RULES_SECTION": "#/components/schemas/RulesSection",
+                        "ARCHETYPE_TERMINOLOGY": "#/components/schemas/ArchetypeTerminology",
+                        "TERMINOLOGY_TERM": "#/components/schemas/TerminologyTerm",
+                        "ARCHETYPE_ID": "#/components/schemas/ArchetypeId",
+                        "RULE_ELEMENT": "#/components/schemas/RuleElement",
+                        "PARTY_REF": "#/components/schemas/PartyRef",
+                        "TEMPLATE_ID": "#/components/schemas/TemplateId",
+                        "EXPRESSION_VARIABLE": "#/components/schemas/ExpressionVariable",
+                        "VALUE_SET": "#/components/schemas/ValueSet",
+                        "CODE_DEFINITION_SET": "#/components/schemas/CodeDefinitionSet",
+                        "CARDINALITY": "#/components/schemas/Cardinality",
+                        "QUERY_VARIABLE": "#/components/schemas/QueryVariable",
+                        "TRANSLATION_DETAILS": "#/components/schemas/TranslationDetails",
+                        "C_INTEGER": "#/components/schemas/CInteger",
+                        "ACCESS_GROUP_REF": "#/components/schemas/AccessGroupRef",
+                        "C_DATE_TIME": "#/components/schemas/CDateTime",
+                        "OBJECT_REF": "#/components/schemas/ObjectRef",
+                        "C_COMPLEX_OBJECT": "#/components/schemas/CComplexObject",
+                        "VARIABLE_DECLARATION": "#/components/schemas/VariableDeclaration",
+                        "BINARY_OPERATOR": "#/components/schemas/BinaryOperator",
+                        "FOR_ALL_STATEMENT": "#/components/schemas/ForAllStatement",
+                        "OPERATOR_KIND": "#/components/schemas/OperatorKind",
+                        "HIER_OBJECT_ID": "#/components/schemas/HierObjectId",
+                        "ARCHETYPE": "#/components/schemas/Archetype",
+                        "ARCHETYPE_ID_CONSTRAINT": "#/components/schemas/ArchetypeIdConstraint",
+                        "C_TIME": "#/components/schemas/CTime"
+                    }
+                },
+                "properties": {
+                    "_type": {
+                        "type": "string"
+                    }
+                }
+            },
+            "RuleElement": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "type"
+                        ],
+                        "properties": {
+                            "type": {
+                                "$ref": "#/components/schemas/ExpressionType"
+                            }
+                        }
+                    }
+                ]
+            },
+            "PartyRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "TemplateId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ExpressionVariable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VariableDeclaration"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "expression"
+                        ],
+                        "properties": {
+                            "expression": {
+                                "$ref": "#/components/schemas/Expression"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ValueSet": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/TerminologyRelation"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CodeDefinitionSet": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "language",
+                            "items"
+                        ],
+                        "properties": {
+                            "language": {
+                                "type": "string"
+                            },
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ArchetypeTerm"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "Cardinality": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "is_ordered",
+                            "is_unique",
+                            "interval"
+                        ],
+                        "properties": {
+                            "is_ordered": {
+                                "type": "boolean"
+                            },
+                            "is_unique": {
+                                "type": "boolean"
+                            },
+                            "interval": {
+                                "$ref": "#/components/schemas/MultiplicityInterval"
+                            }
+                        }
+                    }
+                ]
+            },
+            "QueryVariable": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/VariableDeclaration"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "query_id",
+                            "query_args",
+                            "context"
+                        ],
+                        "properties": {
+                            "query_id": {
+                                "type": "string"
+                            },
+                            "query_args": {
+                                "type": "string"
+                            },
+                            "context": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "TranslationDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "author",
+                            "language"
+                        ],
+                        "properties": {
+                            "other_details": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "author": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "version_last_translated": {
+                                "type": "string"
+                            },
+                            "accreditation": {
+                                "type": "string"
+                            },
+                            "language": {
+                                "$ref": "#/components/schemas/TerminologyCode"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CInteger": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/COrdered"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Interval"
+                                }
+                            },
+                            "assumed_value": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                ]
+            },
+            "AccessGroupRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/ObjectRef"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CDateTime": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Interval"
+                                }
+                            },
+                            "assumed_value": {
+                                "$ref": "#/components/schemas/DateTime"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ObjectRef": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Any"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "namespace",
+                            "type"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/ObjectId"
+                            },
+                            "namespace": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "CComplexObject": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CDefinedObject"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "attributes",
+                            "attribute_tuples"
+                        ],
+                        "properties": {
+                            "attributes": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CAttribute"
+                                }
+                            },
+                            "attribute_tuples": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CAttributeTuple"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "VariableDeclaration": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/RuleStatement"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "BinaryOperator": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Operator"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "ForAllStatement": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Operator"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "variable_name"
+                        ],
+                        "properties": {
+                            "variable_name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "OperatorKind": {
+                "type": "object",
+                "properties": {
+                }
+            },
+            "HierObjectId": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/UIDBasedId"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "Archetype": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/AuthoredResource"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "parent_archetype_id",
+                            "archetype_id",
+                            "rules",
+                            "rm_release",
+                            "differential",
+                            "generated",
+                            "terminology",
+                            "adl_version",
+                            "definition",
+                            "build_uid",
+                            "other_meta_data"
+                        ],
+                        "properties": {
+                            "parent_archetype_id": {
+                                "type": "string"
+                            },
+                            "archetype_id": {
+                                "$ref": "#/components/schemas/ArchetypeHrid"
+                            },
+                            "rules": {
+                                "$ref": "#/components/schemas/RulesSection"
+                            },
+                            "rm_release": {
+                                "type": "string"
+                            },
+                            "differential": {
+                                "type": "boolean"
+                            },
+                            "generated": {
+                                "type": "boolean"
+                            },
+                            "terminology": {
+                                "$ref": "#/components/schemas/ArchetypeTerminology"
+                            },
+                            "adl_version": {
+                                "type": "string"
+                            },
+                            "definition": {
+                                "$ref": "#/components/schemas/CComplexObject"
+                            },
+                            "build_uid": {
+                                "type": "string"
+                            },
+                            "other_meta_data": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ArchetypeIdConstraint": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/Constraint"
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                        }
+                    }
+                ]
+            },
+            "CTime": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/CTemporal"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "constraint",
+                            "assumed_value"
+                        ],
+                        "properties": {
+                            "constraint": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Interval"
+                                }
+                            },
+                            "assumed_value": {
+                                "$ref": "#/components/schemas/Time"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

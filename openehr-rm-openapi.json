@@ -47,7 +47,6 @@
                         "required": [
                             "includes_versions"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "includes_versions": {
                                 "type": "boolean"
@@ -81,7 +80,6 @@
                             "change_type",
                             "committer"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "system_id": {
                                 "type": "string"
@@ -124,7 +122,6 @@
                     "ehr_status",
                     "contributions"
                 ],
-                "additionalProperties": false,
                 "properties": {
                     "system_id": {
                         "$ref": "#/components/schemas/HierObjectId"
@@ -168,7 +165,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -184,7 +180,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "entities": {
                                 "type": "array",
@@ -208,7 +203,6 @@
                             "version_id",
                             "audits"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "version_id": {
                                 "$ref": "#/components/schemas/ObjectVersionId"
@@ -241,7 +235,6 @@
                             "version_status",
                             "build_count"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "namespace": {
                                 "type": "string"
@@ -281,7 +274,6 @@
                         "required": [
                             "details"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "details": {
                                 "$ref": "#/components/schemas/ItemStructure"
@@ -301,7 +293,6 @@
                             "value",
                             "formalism"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -325,7 +316,6 @@
                             "include_revision_history",
                             "include_data"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "include_all_versions": {
                                 "type": "boolean"
@@ -354,7 +344,6 @@
                             "performer",
                             "function"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "performer": {
                                 "type": "string"
@@ -382,7 +371,6 @@
                         "required": [
                             "magnitude"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "magnitude": {
                                 "type": "integer"
@@ -410,7 +398,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -429,7 +416,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -448,7 +434,6 @@
                         "required": [
                             "items"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -471,7 +456,6 @@
                         "required": [
                             "relationship"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "relationship": {
                                 "$ref": "#/components/schemas/DvCodedText"
@@ -499,7 +483,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -521,7 +504,6 @@
                         "required": [
                             "narrative"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "narrative": {
                                 "$ref": "#/components/schemas/DvText"
@@ -550,7 +532,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -584,7 +565,6 @@
                         "required": [
                             "scheme"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "scheme": {
                                 "type": "string"
@@ -606,10 +586,12 @@
                             "parent_resource",
                             "details"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "original_author": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             },
                             "other_contributors": {
                                 "type": "array",
@@ -624,7 +606,10 @@
                                 "type": "string"
                             },
                             "other_details": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             },
                             "parent_resource": {
                                 "type": "object"
@@ -650,7 +635,6 @@
                         "required": [
                             "data"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "data": {
                                 "$ref": "#/components/schemas/ItemStructure"
@@ -666,7 +650,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "accuracy": {
                                 "type": "number"
@@ -688,7 +671,6 @@
                         "required": [
                             "credentials"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "credentials": {
                                 "$ref": "#/components/schemas/ItemStructure"
@@ -722,7 +704,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -743,7 +724,6 @@
                             "audit",
                             "versions"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/HierObjectId"
@@ -772,7 +752,6 @@
                             "archetype_id",
                             "rm_version"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "archetype_id": {
                                 "$ref": "#/components/schemas/ArchetypeId"
@@ -797,7 +776,6 @@
                         "required": [
                             "system_id"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "system_id": {
                                 "type": "string"
@@ -832,7 +810,6 @@
                             "uid",
                             "lifecycle_state"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/ObjectVersionId"
@@ -871,7 +848,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "external_ref": {
                                 "$ref": "#/components/schemas/PartyRef"
@@ -898,7 +874,6 @@
                     "terminology_id",
                     "code_string"
                 ],
-                "additionalProperties": false,
                 "properties": {
                     "terminology_id": {
                         "$ref": "#/components/schemas/TerminologyId"
@@ -919,7 +894,6 @@
                             "instruction_id",
                             "activity_id"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "instruction_id": {
                                 "$ref": "#/components/schemas/LocatableRef"
@@ -957,7 +931,6 @@
                             "uid",
                             "extract_spec"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/HierObjectId"
@@ -982,7 +955,6 @@
                         "required": [
                             "originating_system_audit"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "originating_system_item_ids": {
                                 "type": "array",
@@ -1016,7 +988,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "accuracy": {
                                 "$ref": "#/components/schemas/DvAmount"
@@ -1035,7 +1006,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "$ref": "#/components/schemas/DvParsable"
@@ -1055,7 +1025,6 @@
                             "uid",
                             "identities"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/UIDBasedId"
@@ -1106,7 +1075,6 @@
                             "start_time",
                             "setting"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "health_care_facility": {
                                 "$ref": "#/components/schemas/PartyIdentified"
@@ -1147,7 +1115,6 @@
                         "required": [
                             "item"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "item": {
                                 "$ref": "#/components/schemas/Element"
@@ -1168,7 +1135,6 @@
                             "denominator",
                             "type"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "numerator": {
                                 "type": "number"
@@ -1203,7 +1169,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "normal_status": {
                                 "$ref": "#/components/schemas/CodePhrase"
@@ -1233,7 +1198,6 @@
                             "magnitude",
                             "units"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "magnitude": {
                                 "type": "number"
@@ -1319,7 +1283,6 @@
                             "value",
                             "symbol"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "integer"
@@ -1346,7 +1309,6 @@
                         "required": [
                             "specification"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "specification": {
                                 "$ref": "#/components/schemas/SyncExtractSpec"
@@ -1373,7 +1335,6 @@
                             "code_string",
                             "uri"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "terminology_id": {
                                 "type": "string"
@@ -1401,7 +1362,6 @@
                         "required": [
                             "performer"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "performer": {
                                 "$ref": "#/components/schemas/PartyRef"
@@ -1456,7 +1416,6 @@
                             "audit",
                             "content"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "author": {
                                 "$ref": "#/components/schemas/PartyProxy"
@@ -1496,7 +1455,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -1515,7 +1473,6 @@
                         "required": [
                             "extract_id_key"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "extract_id_key": {
                                 "type": "string"
@@ -1527,8 +1484,8 @@
                                 "type": "string"
                             },
                             "other_ids": {
-                                "type": "array",
-                                "items": {
+                                "type": "object",
+                                "additionalProperties": {
                                     "type": "string"
                                 }
                             },
@@ -1567,7 +1524,6 @@
                             "lower_included",
                             "upper_included"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "lower": {
                                 "type": "object"
@@ -1601,7 +1557,6 @@
                         "required": [
                             "original_language"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "original_language": {
                                 "$ref": "#/components/schemas/TerminologyCode"
@@ -1635,7 +1590,6 @@
                             "uid",
                             "action"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "request_id": {
                                 "$ref": "#/components/schemas/ObjectRef"
@@ -1673,7 +1627,6 @@
                             "media_type",
                             "size"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "alternate_text": {
                                 "type": "string"
@@ -1719,7 +1672,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "roles": {
                                 "type": "array",
@@ -1750,7 +1702,6 @@
                             "uid",
                             "audit"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/HierObjectId"
@@ -1790,7 +1741,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -1809,7 +1759,6 @@
                         "required": [
                             "items"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -1833,7 +1782,6 @@
                             "range",
                             "meaning"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "range": {
                                 "$ref": "#/components/schemas/DvInterval"
@@ -1852,7 +1800,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "protocol": {
                                 "$ref": "#/components/schemas/ItemStructure"
@@ -1871,7 +1818,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -1890,7 +1836,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "null_flavour": {
                                 "$ref": "#/components/schemas/DvCodedText"
@@ -1916,7 +1861,6 @@
                             "link_depth",
                             "manifest"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "extract_type": {
                                 "$ref": "#/components/schemas/DvCodedText"
@@ -1972,7 +1916,6 @@
                             "contribution",
                             "commit_audit"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "contribution": {
                                 "$ref": "#/components/schemas/ObjectRef"
@@ -1997,7 +1940,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -2017,7 +1959,6 @@
                             "value",
                             "is_terminal"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "$ref": "#/components/schemas/DvCodedText"
@@ -2048,7 +1989,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -2087,7 +2027,6 @@
                         "required": [
                             "origin"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "origin": {
                                 "$ref": "#/components/schemas/DvDateTime"
@@ -2134,7 +2073,6 @@
                         "required": [
                             "specification"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "specification": {
                                 "$ref": "#/components/schemas/SyncExtractSpec"
@@ -2150,7 +2088,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "time_validity": {
                                 "$ref": "#/components/schemas/DvInterval"
@@ -2178,7 +2115,6 @@
                             "purpose",
                             "other_details"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "language": {
                                 "$ref": "#/components/schemas/TerminologyCode"
@@ -2204,11 +2140,17 @@
                             "original_resource_uri": {
                                 "type": "array",
                                 "items": {
-                                    "type": "object"
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
                                 }
                             },
                             "other_details": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }
@@ -2220,7 +2162,6 @@
                     "match",
                     "target"
                 ],
-                "additionalProperties": false,
                 "properties": {
                     "match": {
                         "type": "string"
@@ -2244,7 +2185,6 @@
                             "time",
                             "data"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "time": {
                                 "$ref": "#/components/schemas/DvDateTime"
@@ -2270,7 +2210,6 @@
                             "persist_in_server",
                             "update_method"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "persist_in_server": {
                                 "type": "boolean"
@@ -2302,7 +2241,6 @@
                         "required": [
                             "is_primary"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "is_primary": {
                                 "type": "boolean"
@@ -2330,7 +2268,6 @@
                         "required": [
                             "data"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "data": {
                                 "$ref": "#/components/schemas/History"
@@ -2368,7 +2305,6 @@
                             "total_version_count",
                             "extract_version_count"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/HierObjectId"
@@ -2409,7 +2345,6 @@
                             "archetype_node_id",
                             "name"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/UIDBasedId"
@@ -2448,7 +2383,6 @@
                             "sender",
                             "sender_reference"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "sender": {
                                 "type": "string"
@@ -2479,7 +2413,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "accuracy": {
                                 "$ref": "#/components/schemas/DvDuration"
@@ -2510,7 +2443,6 @@
                         "required": [
                             "current_state"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "current_state": {
                                 "$ref": "#/components/schemas/DvCodedText"
@@ -2554,7 +2486,6 @@
                             "function",
                             "performer"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "function": {
                                 "$ref": "#/components/schemas/DvText"
@@ -2579,7 +2510,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "folders": {
                                 "type": "array",
@@ -2613,7 +2543,6 @@
                             "system_id",
                             "sequence_nr"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "request_id": {
                                 "$ref": "#/components/schemas/HierObjectId"
@@ -2663,7 +2592,6 @@
                             "encoding",
                             "subject"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "language": {
                                 "$ref": "#/components/schemas/CodePhrase"
@@ -2741,7 +2669,6 @@
                             "owner_id",
                             "time_created"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "uid": {
                                 "$ref": "#/components/schemas/HierObjectId"
@@ -2763,7 +2690,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "charset": {
                                 "$ref": "#/components/schemas/CodePhrase"
@@ -2782,7 +2708,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "item_type": {
                                 "$ref": "#/components/schemas/DvCodedText"
@@ -2817,8 +2742,8 @@
                                 "type": "string"
                             },
                             "other_details": {
-                                "type": "array",
-                                "items": {
+                                "type": "object",
+                                "additionalProperties": {
                                     "type": "string"
                                 }
                             },
@@ -2836,7 +2761,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "rows": {
                                 "type": "array",
@@ -2859,7 +2783,6 @@
                             "width",
                             "math_function"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "width": {
                                 "$ref": "#/components/schemas/DvDuration"
@@ -2885,7 +2808,6 @@
                             "reason",
                             "is_pending"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "attested_view": {
                                 "$ref": "#/components/schemas/DvMultimedia"
@@ -2919,7 +2841,6 @@
                         "required": [
                             "details"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "details": {
                                 "$ref": "#/components/schemas/ItemStructure"
@@ -2938,7 +2859,6 @@
                         "required": [
                             "items"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -2960,7 +2880,6 @@
                         "required": [
                             "id"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "issuer": {
                                 "type": "string"
@@ -2988,7 +2907,6 @@
                         "required": [
                             "defining_code"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "defining_code": {
                                 "$ref": "#/components/schemas/CodePhrase"
@@ -3008,7 +2926,6 @@
                             "source",
                             "target"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "source": {
                                 "$ref": "#/components/schemas/PartyRef"
@@ -3036,7 +2953,6 @@
                         "required": [
                             "id"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "id": {
                                 "$ref": "#/components/schemas/UIDBasedId"
@@ -3067,7 +2983,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "settings": {
                                 "type": "object"
@@ -3099,7 +3014,6 @@
                             "text",
                             "concept"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "text": {
                                 "type": "string"
@@ -3334,7 +3248,6 @@
                         "required": [
                             "data"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "data": {
                                 "$ref": "#/components/schemas/ItemStructure"
@@ -3350,7 +3263,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "name": {
                                 "type": "string"
@@ -3373,7 +3285,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "item": {
                                 "$ref": "#/components/schemas/XVersionedObject"
@@ -3395,7 +3306,6 @@
                             "category",
                             "composer"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "language": {
                                 "$ref": "#/components/schemas/CodePhrase"
@@ -3435,7 +3345,6 @@
                             "is_queryable",
                             "is_modifiable"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "subject": {
                                 "$ref": "#/components/schemas/PartySelf"
@@ -3465,7 +3374,6 @@
                             "type",
                             "target"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "meaning": {
                                 "$ref": "#/components/schemas/DvText"
@@ -3491,19 +3399,24 @@
                             "language",
                             "author"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "language": {
                                 "$ref": "#/components/schemas/TerminologyCode"
                             },
                             "author": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             },
                             "accreditation": {
                                 "type": "string"
                             },
                             "other_details": {
-                                "type": "object"
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
                             }
                         }
                     }
@@ -3533,7 +3446,6 @@
                             "namespace",
                             "type"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "id": {
                                 "$ref": "#/components/schemas/ObjectId"
@@ -3558,7 +3470,6 @@
                         "required": [
                             "data"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "data": {
                                 "$ref": "#/components/schemas/ItemTree"
@@ -3574,7 +3485,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "magnitude_status": {
                                 "type": "string"
@@ -3596,7 +3506,6 @@
                         "required": [
                             "item"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "item": {
                                 "$ref": "#/components/schemas/OriginalVersion"
@@ -3615,7 +3524,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "boolean"
@@ -3634,7 +3542,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -3653,7 +3560,6 @@
                         "required": [
                             "value"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "value": {
                                 "type": "string"
@@ -3693,7 +3599,6 @@
                             "description",
                             "ism_transition"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "time": {
                                 "$ref": "#/components/schemas/DvDateTime"
@@ -3721,7 +3626,6 @@
                         "required": [
                             "extract_id_key"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "extract_id_key": {
                                 "type": "string"
@@ -3761,7 +3665,6 @@
                     },
                     {
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
                             "items": {
                                 "type": "array",
@@ -3784,7 +3687,6 @@
                         "required": [
                             "description"
                         ],
-                        "additionalProperties": false,
                         "properties": {
                             "description": {
                                 "$ref": "#/components/schemas/ItemStructure"
