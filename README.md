@@ -31,5 +31,5 @@ To select the generator you want, open build.gradle and set the `generatorName`-
 
 ## Possible improvements
 - perhaps the Any model should be renamed, as in some programming languages that's a reserved word
-- some date/time types seem to be still missing, for some reason
+- some date/time types seem to be still missing in the AOM, for some reason. Will be fixed soon.
 - Now the discriminator mapping is fully defined at the Any level. That may have to be added at many levels instead.
