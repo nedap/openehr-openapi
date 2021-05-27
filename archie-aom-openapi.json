@@ -88,7 +88,7 @@
             "ArchetypeHrid": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -216,7 +216,7 @@
             "ResourceAnnotations": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -243,7 +243,7 @@
             "ResourceDescription": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -356,7 +356,7 @@
             "SiblingOrder": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -408,7 +408,7 @@
             "Uid": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -468,7 +468,7 @@
             "ArchetypeTerm": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -516,7 +516,7 @@
             "ArchetypeConstraint": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -528,7 +528,7 @@
             "TerminologyRelation": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -551,7 +551,7 @@
             "LanguageSection": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -680,7 +680,7 @@
             "TerminologyCode": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -721,7 +721,7 @@
             "ObjectId": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -763,7 +763,7 @@
             "Interval": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -799,7 +799,7 @@
             "AuthoredResource": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -836,7 +836,7 @@
                         ],
                         "properties": {
                             "value": {
-                                "$ref": "#/components/schemas/Any"
+                                "$ref": "#/components/schemas/ModelAny"
                             }
                         }
                     }
@@ -845,7 +845,7 @@
             "VersionTreeId": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -975,7 +975,7 @@
             "CSecondOrder": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1045,7 +1045,7 @@
             "ResourceDescriptionItem": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1167,7 +1167,7 @@
                         ],
                         "properties": {
                             "default_value": {
-                                "$ref": "#/components/schemas/Any"
+                                "$ref": "#/components/schemas/ModelAny"
                             }
                         }
                     }
@@ -1359,7 +1359,7 @@
             "RulesSection": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1384,7 +1384,7 @@
             "ArchetypeTerminology": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1447,7 +1447,7 @@
             "TerminologyTerm": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1478,7 +1478,7 @@
                     }
                 ]
             },
-            "Any": {
+            "ModelAny": {
                 "type": "object",
                 "discriminator": {
                     "propertyName": "_type",
@@ -1584,7 +1584,7 @@
             "RuleElement": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1656,7 +1656,7 @@
             "CodeDefinitionSet": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1681,7 +1681,7 @@
             "Cardinality": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1733,7 +1733,7 @@
             "TranslationDetails": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1832,7 +1832,7 @@
             "ObjectRef": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",

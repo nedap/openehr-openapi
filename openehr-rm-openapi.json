@@ -40,7 +40,7 @@
             "SyncExtractSpec": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -70,7 +70,7 @@
             "AuditDetails": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -176,7 +176,7 @@
             "ExtractManifest": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -195,7 +195,7 @@
             "RevisionHistoryItem": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -221,7 +221,7 @@
             "ArchetypeHrid": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -307,7 +307,7 @@
             "ExtractVersionSpec": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -336,7 +336,7 @@
             "ExtractParticipation": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -576,7 +576,7 @@
             "ResourceDescription": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -697,7 +697,7 @@
             "Uid": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -715,7 +715,7 @@
             "Contribution": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -744,7 +744,7 @@
             "Archetyped": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -769,7 +769,7 @@
             "FeederAuditDetails": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -844,7 +844,7 @@
             "PartyProxy": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -948,7 +948,7 @@
             "FeederAudit": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1263,7 +1263,7 @@
             "DataValue": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1326,7 +1326,7 @@
             "TerminologyCode": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1407,7 +1407,7 @@
             "Message": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1448,7 +1448,7 @@
             "ObjectId": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1466,7 +1466,7 @@
             "ExtractEntityManifest": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1514,7 +1514,7 @@
             "Interval": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1550,7 +1550,7 @@
             "AuthoredResource": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1694,7 +1694,7 @@
             "XContribution": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1734,7 +1734,7 @@
             "VersionTreeId": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1774,7 +1774,7 @@
             "ReferenceRange": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1850,7 +1850,7 @@
             "ExtractSpec": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1908,7 +1908,7 @@
             "Version": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -1973,7 +1973,7 @@
             "AccessControlSettings": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2106,7 +2106,7 @@
             "ResourceDescriptionItem": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2202,7 +2202,7 @@
             "ExtractUpdateSpec": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2252,7 +2252,7 @@
                                 "type": "boolean"
                             },
                             "item": {
-                                "$ref": "#/components/schemas/Any"
+                                "$ref": "#/components/schemas/ModelAny"
                             }
                         }
                     }
@@ -2294,7 +2294,7 @@
             "XVersionedObject": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2375,7 +2375,7 @@
             "AddressedMessage": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2478,7 +2478,7 @@
             "Participation": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2660,7 +2660,7 @@
             "VersionedObject": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2852,7 +2852,7 @@
             "RevisionHistory": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -2967,7 +2967,7 @@
             "Pathable": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -3006,7 +3006,7 @@
             "TerminologyTerm": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -3037,7 +3037,7 @@
                     }
                 ]
             },
-            "Any": {
+            "ModelAny": {
                 "type": "object",
                 "discriminator": {
                     "propertyName": "_type",
@@ -3365,7 +3365,7 @@
             "Link": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -3391,7 +3391,7 @@
             "TranslationDetails": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -3437,7 +3437,7 @@
             "ObjectRef": {
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/Any"
+                        "$ref": "#/components/schemas/ModelAny"
                     },
                     {
                         "type": "object",
@@ -3490,7 +3490,7 @@
                                 "type": "string"
                             },
                             "accuracy": {
-                                "$ref": "#/components/schemas/Any"
+                                "$ref": "#/components/schemas/ModelAny"
                             }
                         }
                     }
